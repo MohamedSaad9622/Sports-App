@@ -27,15 +27,14 @@ class SportsViewController: UIViewController {
 
 
 //MARK: - ISportsView protocol
+
 extension SportsViewController: ISportsView{
     
     func render_SportsView(sports: [Sport]) {
         
         self.sports_list = sports
-        print(self.sports_list.count)
         
         DispatchQueue.main.async {
-            
             self.sports_collectionView.reloadData()
         }
     }
@@ -70,6 +69,15 @@ extension SportsViewController:UICollectionViewDataSource{
         cell.setCell(image:sports_list[indexPath.row].strSportThumb , title: sports_list[indexPath.row].strSport )
 
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: Constants.second_storyBoard_name, bundle:nil)
+        let leaguesViewController = storyBoard.instantiateViewController(withIdentifier: Constants.leagues_ViewController_ID) as! LeaguesViewController
+        leaguesViewController.sport = sports_list[indexPath.row].strSport
+        self.navigationController?.pushViewController(leaguesViewController, animated: true)
+        
     }
     
 }

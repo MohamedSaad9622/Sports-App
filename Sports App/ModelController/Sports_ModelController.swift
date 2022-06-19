@@ -17,7 +17,7 @@ class Sports_ModelController: ISportsModel {
     
     func fetchDataFromAPI(url: String) {
         
-        apiService.fetchDataFromApi(url: url) { sports, error in
+        apiService.fetchDataFromApi_sports(url: url) { sports, error in
             if let error = error {
                 self.sportsPresenter.onFailed(error: error)
             }

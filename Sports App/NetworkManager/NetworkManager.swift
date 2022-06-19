@@ -8,8 +8,8 @@
 import Foundation
 
 class NetworkManager: APIService {
-    
-    func fetchDataFromApi(url: String, completion: @escaping (([Sport]?, Error?) -> Void)) {
+    // sports
+    func fetchDataFromApi_sports(url: String, completion: @escaping (([Sport]?, Error?) -> Void)) {
         if let url = URL(string: url){
             let request = URLRequest(url: url)
             let session = URLSession(configuration: URLSessionConfiguration.default)
@@ -28,6 +28,27 @@ class NetworkManager: APIService {
         }
 
     }
+    
+    // for leagues in sport
+    func fetchDataFromApi_leagues(sport: String, completion: @escaping (([Country]?, Error?) -> Void)) {
+        if let url = URL(string: Constants(sport: sport).sport_leagues_url ){
+            let request = URLRequest(url: url)
+            let session = URLSession(configuration: URLSessionConfiguration.default)
+            let task    = session.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    completion(nil, error)
+                }
+                if let data = data {
+                    
+                    if let decodedData: Leagues = convertFromJson(data: data){
+                        completion(decodedData.countries, nil)
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
     
     
 }
