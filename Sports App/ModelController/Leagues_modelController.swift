@@ -18,7 +18,7 @@ class Leagues_modelController: ILeaguesModel {
     func fetchLeaguesFromAPI(sport: String) {
         let apiService : APIService = NetworkManager()
         
-        apiService.fetchDataFromApi_leagues(sport: sport) { Leagues, error in
+        apiService.fetch_leagues(sport: sport) { Leagues, error in
             if let error = error {
                 self.leaguesPresenter.onFailed(error: error)
             }

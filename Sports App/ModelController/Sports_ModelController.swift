@@ -17,12 +17,11 @@ class Sports_ModelController: ISportsModel {
     
     func fetchDataFromAPI(url: String) {
         
-        apiService.fetchDataFromApi_sports(url: url) { sports, error in
+        apiService.fetch_sports(url: url) { sports, error in
             if let error = error {
                 self.sportsPresenter.onFailed(error: error)
             }
             if let sports = sports {
-                
                 self.sportsPresenter.onSuccess(sports: sports)
             }
         }

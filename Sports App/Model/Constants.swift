@@ -43,11 +43,16 @@ struct Constants {
     
     // for search for leagues in sport
     // to force set sport before use sport_leagues_url make it object member
-    var  sport:String
+    var  sport:String = ""
     var sport_leagues_url : String{
         return "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=\(sport)"
     }
     
+    // temporary
+    var leagueID:String = ""
+    var events_url: String{
+        return "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=\(leagueID)"
+    }
     
     
 }
