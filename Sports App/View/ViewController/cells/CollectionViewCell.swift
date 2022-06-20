@@ -16,8 +16,8 @@ class CollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.sports_cell_image.layer.masksToBounds = true
-        self.sports_cell_image.layer.cornerRadius = CGFloat(roundf(Float(self.sports_cell_image.frame.size.width / 2.0)))
+//        self.sports_cell_image.layer.masksToBounds = true
+//        self.sports_cell_image.layer.cornerRadius = CGFloat(roundf(Float(self.sports_cell_image.frame.size.width / 4.0)))
         
     }
     
