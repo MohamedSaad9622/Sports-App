@@ -86,6 +86,15 @@ extension FavoritesViewController: UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        if !Connectivity.isConnectedToInternet() {
+            let alert = UIAlertController(title: "Alert!", message: "There is no internet connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancle", style: .cancel, handler: nil))
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
+            return
+        }
+        
         let storyboard = UIStoryboard(name: Constants.LeagueDetails_storyBoard_name, bundle: nil)
         let leagueDetails_vc = storyboard.instantiateViewController(withIdentifier: Constants.leagueDetail_ViewController_ID) as! LeagueDetails_ViewController
         leagueDetails_vc.league = favoriteLeagues[indexPath.section]
