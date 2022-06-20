@@ -13,16 +13,21 @@ class SportsViewController: UIViewController {
     
     var sports_list: [Sport] = []
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.sports_collectionView.register(UINib(nibName: Constants.sports__nib_name, bundle: nil), forCellWithReuseIdentifier: Constants.sports_collectionCell_identifier)
         
-        let sportsPresenter : ISportsPresenter = Sports_presenter(sportsView: self)
-        sportsPresenter.fetchSports(url: Constants.sports_url_string)
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        let sportsPresenter : ISportsPresenter = Sports_presenter(sportsView: self)
+        sportsPresenter.fetchSports(url: Constants.sports_url_string)
+    }
+    
 }
 
 

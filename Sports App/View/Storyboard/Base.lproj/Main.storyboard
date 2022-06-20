@@ -57,14 +57,29 @@
                     <view key="view" contentMode="scaleToFill" id="CEd-Sz-Be8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Htc-jd-eU3">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="q8F-sA-zef"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Htc-jd-eU3" firstAttribute="leading" secondItem="q8F-sA-zef" secondAttribute="leading" id="ICB-GA-qmG"/>
+                            <constraint firstItem="Htc-jd-eU3" firstAttribute="top" secondItem="q8F-sA-zef" secondAttribute="top" id="Nd8-ss-imz"/>
+                            <constraint firstItem="q8F-sA-zef" firstAttribute="bottom" secondItem="Htc-jd-eU3" secondAttribute="bottom" id="T61-cV-e5Z"/>
+                            <constraint firstItem="q8F-sA-zef" firstAttribute="trailing" secondItem="Htc-jd-eU3" secondAttribute="trailing" id="ZZj-PI-5to"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="h3i-5R-0QP"/>
+                    <connections>
+                        <outlet property="favoriteLeagues_tableView" destination="Htc-jd-eU3" id="J0k-Pf-rye"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocX-wT-dmJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1613.0434782608697" y="418.52678571428572"/>
+            <point key="canvasLocation" x="1435" y="419"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="w6M-ar-4dU">
@@ -83,7 +98,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5b-t4-ncZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="81" y="-341"/>
+            <point key="canvasLocation" x="303" y="-544"/>
         </scene>
         <!--Sports-->
         <scene sceneID="wpK-iL-eC5">

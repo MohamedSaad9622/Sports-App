@@ -14,6 +14,7 @@ class LeaguesViewController: UIViewController {
     var leagues : [Country] = []
     var sport: String = ""
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,7 +86,8 @@ extension LeaguesViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: Constants.LeagueDetails_storyBoard_name, bundle: nil)
         let leagueDetails_vc = storyboard.instantiateViewController(withIdentifier: Constants.leagueDetail_ViewController_ID) as! LeagueDetails_ViewController
-        leagueDetails_vc.leagueID = leagues[indexPath.section].idLeague 
+        leagueDetails_vc.league = leagues[indexPath.section]
+        leagueDetails_vc.previousViewController = Constants.leaguesViewController
         leagueDetails_vc.modalPresentationStyle = .fullScreen
         self.present(leagueDetails_vc, animated: true, completion: nil)
         

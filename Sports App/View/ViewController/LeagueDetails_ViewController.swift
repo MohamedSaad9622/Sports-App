@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import  CoreData
 
 class LeagueDetails_ViewController: UIViewController {
 
@@ -15,8 +16,13 @@ class LeagueDetails_ViewController: UIViewController {
     @IBOutlet weak var addToFavorite_button: UIBarButtonItem!
     
     @IBOutlet weak var noUpcomingEvent_label: UILabel!
-    var leagueID:String = ""
+    
+    var league: Country?
+    var previousViewController : String?
+    
     var upcomingEvents:[Event] = []
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,29 +41,85 @@ class LeagueDetails_ViewController: UIViewController {
         self.upcomingEvents_collectionView.delegate   = self
         self.upcomingEvents_collectionView.dataSource = self
         upcomingEvents_collectionView.register(UINib(nibName: Constants.upcomingEvent_nib_name, bundle: nil), forCellWithReuseIdentifier: Constants.upcomingEvent_collectionView_identifier)
-        
-        let leagueDetails_presenter : ILeagueDetails_presenter = LeagueDetails_presenter(leagueDetails_view: self)
-        leagueDetails_presenter.fetchEvents(leagueID: leagueID)
+        // get events
+        let leagueDetails_presenter : ILeagueDetails_presenter_API = LeagueDetails_presenter(leagueDetailsView_Api: self)
+        leagueDetails_presenter.fetchEvents(leagueID: league?.idLeague ?? "")
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if previousViewController == Constants.favoritesViewController {
+            self.addToFavorite_button.image = UIImage(systemName: "heart.fill")
+        }
+    }
+    
+}
+    
 
+// MARK: -                               BUTTONS ACTION
+
+
+extension LeagueDetails_ViewController {
+    
     @IBAction func goBack_button(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addToFavorite_button(_ sender: UIBarButtonItem) {
+        
+        let leagueDetails_presenter : ILeagueDetails_presenter_CoreData = LeagueDetails_presenter(leagueDetailsView_coreData: self)
         if self.addToFavorite_button.image == UIImage(systemName: "heart.fill") {
+            
+            if let league = league {
+                leagueDetails_presenter.removeFromFavorites(league:league , appDelegate: appDelegate)
+                print("^^^^^^^^^^^^^%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+            }
+            print("^^^^^^^^^^^^^%%%%%%%%%%%%%%%%%%%%%%%%%%%^^^^^^^^^^^^^^^^^^^^^^^^^^")
             self.addToFavorite_button.image = UIImage(systemName: "heart")
-        }else{
+        }
+        else{
+            if let league = league {
+                leagueDetails_presenter.addToFavorites(league: league, appDelegate: appDelegate)
+            }
             self.addToFavorite_button.image = UIImage(systemName: "heart.fill")
         }
-        print("Added^^^^^^^^^^^^^^^^^^^^")
     }
+    
 }
 
-//MARK: - ILeagueDetails_view Protocol
 
-extension LeagueDetails_ViewController: ILeagueDetails_view{
+//MARK: -   CoreData Protocols
+
+extension LeagueDetails_ViewController: ILeagueDetails_view_CoreData{
+    func savedIn_CoreData() {
+        print("@@@@@@@@@@@@@@@@@ LeagueDetails_ViewController savedIn_CoreData")
+        let alert = UIAlertController(title: "Done", message: "Saved", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func saveFailed_CoreData(error: Error) {
+        let alert = UIAlertController(title: "Alert!", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancle", style: .cancel, handler: nil))
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+}
+
+
+
+//MARK: -   Api Protocol
+
+
+
+extension LeagueDetails_ViewController: ILeagueDetails_view_API{
     func render_upcomingView(events: [Event]) {
         self.upcomingEvents = events
         DispatchQueue.main.async {
@@ -78,7 +140,10 @@ extension LeagueDetails_ViewController: ILeagueDetails_view{
 }
 
 
+
+
 //MARK: - CollectionView  Protocols
+
 
 extension LeagueDetails_ViewController:UICollectionViewDelegate{
     
@@ -121,16 +186,7 @@ extension LeagueDetails_ViewController:UICollectionViewDataSource{
         }
         
     }
-
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//        let storyBoard : UIStoryboard = UIStoryboard(name: Constants.second_storyBoard_name, bundle:nil)
-//        let leaguesViewController = storyBoard.instantiateViewController(withIdentifier: Constants.leagues_ViewController_ID) as! LeaguesViewController
-//        leaguesViewController.sport = sports_list[indexPath.row].strSport
-//        self.navigationController?.pushViewController(leaguesViewController, animated: true)
-//
-//    }
-
+    
 }
 
 extension LeagueDetails_ViewController:UICollectionViewDelegateFlowLayout{
@@ -139,6 +195,7 @@ extension LeagueDetails_ViewController:UICollectionViewDelegateFlowLayout{
         // make only two cell in same row
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
     }
+  
     
 }
 

@@ -19,6 +19,9 @@ struct Constants {
     static let leagues_ViewController_ID         = "leaguesViewController"
     static let leagueDetail_ViewController_ID     = "LeagueDetails_ViewController"
     
+    static let favoritesViewController           = "FavoritesViewController"
+    static let leaguesViewController              = "LeaguesViewController"
+    
 //MARK: -  collection cells identifier
     
     static let sports_collectionCell_identifier        = "sports_cell"
@@ -35,8 +38,10 @@ struct Constants {
     
 //MARK: -   TableView cells identifier
     
+    // leaguesViewController and favoriteViewController will use same cell
     static let leagues_tableViewCell_identifier  = "leagues_cell"
     static let leagues_nib_name                = "leaguesTableViewCell"
+
     
 //MARK: -   Url
     static let sports_url_string               = "https://www.thesportsdb.com/api/v1/json/2/all_sports.php"
@@ -54,5 +59,13 @@ struct Constants {
         return "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=\(leagueID)"
     }
     
+//MARK: - Database
     
+    static let league_entityName: String = "League"
+    
+}
+
+// keys
+enum dbKeys:String {
+case id = "idLeague", leagueName = "strLeague", leagueImage = "strBadge", leagueYoutube = "strYoutube"
 }

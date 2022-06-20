@@ -7,23 +7,93 @@
 
 import UIKit
 
+
 class FavoritesViewController: UIViewController {
 
+    @IBOutlet weak var favoriteLeagues_tableView: UITableView!
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var favoriteLeagues : [Country] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        favoriteLeagues_tableView.register(UINib(nibName: Constants.leagues_nib_name, bundle: nil), forCellReuseIdentifier: Constants.leagues_tableViewCell_identifier)
+
+        favoriteLeagues_tableView.delegate = self
+        favoriteLeagues_tableView.dataSource = self
+        
+        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let favoritesPresenter : IFavorites_presenter = Favorites_presenter(favoritesView: self)
+        favoritesPresenter.fetchFavoritesLeague(appDelegate: appDelegate)
     }
     
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//MARK: -  CoreData Protocols
+
+extension FavoritesViewController: IFavorites_View{
+    
+    func render_upcomingView(leagues: [Country]) {
+        print("@@@@@@@@@@@@@@@@@ FavoritesViewController")
+        favoriteLeagues = leagues
+        DispatchQueue.main.async {
+            self.favoriteLeagues_tableView.reloadData()
+        }
     }
-    */
+    
+    func postError_upcomingView(error: Error) {
+        let alert = UIAlertController(title: "Alert!", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancle", style: .cancel, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+}
+
+
+
+//MARK: - TableView
+
+extension FavoritesViewController: UITableViewDelegate{
+
+}
+
+extension FavoritesViewController: UITableViewDataSource{
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return favoriteLeagues.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = favoriteLeagues_tableView.dequeueReusableCell(withIdentifier: Constants.leagues_tableViewCell_identifier, for: indexPath) as? leaguesTableViewCell else { return UITableViewCell() }
+        cell.setCell(league: favoriteLeagues[indexPath.section])
+        return cell
+    }
+
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let storyboard = UIStoryboard(name: Constants.LeagueDetails_storyBoard_name, bundle: nil)
+        let leagueDetails_vc = storyboard.instantiateViewController(withIdentifier: Constants.leagueDetail_ViewController_ID) as! LeagueDetails_ViewController
+        leagueDetails_vc.league = favoriteLeagues[indexPath.section]
+        leagueDetails_vc.previousViewController = Constants.favoritesViewController
+        leagueDetails_vc.modalPresentationStyle = .fullScreen
+        self.present(leagueDetails_vc, animated: true, completion: nil)
+        
+    }
+
 
 }
