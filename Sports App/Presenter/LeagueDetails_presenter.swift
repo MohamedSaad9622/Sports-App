@@ -20,7 +20,6 @@ class LeagueDetails_presenter {
 }
 
 
-
 //MARK: - conform Api protocol
 
 
@@ -32,13 +31,33 @@ extension LeagueDetails_presenter: ILeagueDetails_presenter_API{
     }
     
     func onSuccess_Api(events: [Event]) {
-        self.leagueDetailsView_Api?.render_upcomingView(events: events)
+        print("&&&&&&&&&&&&&&&&&& fetchTeams presenter done \(events)")
+        leagueDetailsView_Api?.render_upcomingView(events: events)
     }
     
     func onFailed_Api(error: Error) {
-        self.leagueDetailsView_Api?.postError_upcomingView(error: error)
+        print("&&&&&&&&&&&&&&&&&& fetchTeams presenter error ")
+        leagueDetailsView_Api?.postError_upcomingView(error: error)
     }
     
+    
+    func fetchTeams(leagueName: String) {
+        let leagueDetails_model : ILeagueDetails_model_API = LeaguesDetails_modelController(leagueDetailsPresenter_Api:self)
+        let leagueName_arr = leagueName.components(separatedBy: " ")
+        var leagueName_final = leagueName_arr[0]
+        for index in 1..<leagueName_arr.count {
+            leagueName_final += "%20\(leagueName_arr[index])"
+        }
+        leagueDetails_model.fetchTeamsFromAPI(leagueName: leagueName_final)
+    }
+    
+    func onSuccess_TeamsApi(teams: [Team]) {
+        leagueDetailsView_Api?.render_TeamsView(teams: teams)
+    }
+    
+    func onFailed_TeamsApi(error: Error) {
+        leagueDetailsView_Api?.postError_TeamsView(error: error)
+    }
 }
 
 
@@ -53,16 +72,16 @@ extension LeagueDetails_presenter: ILeagueDetails_presenter_CoreData{
         leagueDetailsModel.addToFavorites_inCoreData(league: league, appDelegate: appDelegate)
     }
     
-    func removeFromFavorites(league: Country, appDelegate: AppDelegate) {
+    func removeFromFavorites(leagueId: String, appDelegate: AppDelegate) {
         let leagueDetailsModel : ILeagueDetails_model_CoreData = LeaguesDetails_modelController(leagueDetailsPresenter_coreData: self)
         // convert from Country to League "entity row"
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let myLeague = League(context: managedContext)
-        myLeague.idLeague = league.idLeague
-        myLeague.strBadge = league.strBadge
-        myLeague.strYoutube = league.strYoutube
-        myLeague.strLeague = league.strLeague
-        leagueDetailsModel.removeFromFavorites_fromCoreData(league: myLeague, appDelegate: appDelegate)
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//        let myLeague = League(context: managedContext)
+//        myLeague.idLeague = league.idLeague
+//        myLeague.strBadge = league.strBadge
+//        myLeague.strYoutube = league.strYoutube
+//        myLeague.strLeague = league.strLeague
+        leagueDetailsModel.removeFromFavorites_fromCoreData(leagueId: leagueId, appDelegate: appDelegate)
     }
     
     func onSuccess_CoreData() {

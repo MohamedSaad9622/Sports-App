@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class Teams_CollectionViewCell: UICollectionViewCell {
 
@@ -16,8 +17,9 @@ class Teams_CollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setCell() {
-        self.team_imageView.image = UIImage(named: "women.jpeg")
+    func setCell(team:Team) {
+        self.team_imageView.sd_setImage(with: URL(string: team.strTeamBadge), placeholderImage: UIImage(named: "women.jpeg"))
+        print("%%%%%%%%%%image : \(team.strTeamBadge)")
     }
 
 }

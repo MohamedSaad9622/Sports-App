@@ -8,7 +8,7 @@
 import Foundation
 
 class LeaguesDetails_modelController {
-    
+    let apiService : APIService = NetworkManager()
     var leagueDetailsPresenter_Api : ILeagueDetails_presenter_API?
     var leagueDetailsPresenter_coreData : ILeagueDetails_presenter_CoreData?
     
@@ -25,14 +25,32 @@ class LeaguesDetails_modelController {
 
 
 extension LeaguesDetails_modelController: ILeagueDetails_model_API{
+    
     func fetchEventsFromAPI(leagueID: String) {
-        let apiService : APIService = NetworkManager()
+        
         apiService.fetch_events(leagueID: leagueID) { events, error in
             if let events = events {
+                print("&&&&&&&&&&&&&&&&&& fetchEventsFromAPI done")
                 self.leagueDetailsPresenter_Api?.onSuccess_Api(events: events)
             }
             if let error = error {
+                print("&&&&&&&&&&&&&&&&&& fetchEventsFromAPI error")
                 self.leagueDetailsPresenter_Api?.onFailed_Api(error: error)
+            }
+            if error == nil && events == nil {
+                print("&&&&&&&&&&&&&&&&&& fetchEventsFromAPI nilllllllllllllllllllllllllllllllllllllll")
+            }
+        }
+    }
+    
+    func fetchTeamsFromAPI(leagueName: String) {
+
+        apiService.fetch_Teams(leagueName: leagueName) { teams, error in
+            if let teams = teams {
+                self.leagueDetailsPresenter_Api?.onSuccess_TeamsApi(teams: teams)
+            }
+            if let error = error {
+                self.leagueDetailsPresenter_Api?.onFailed_TeamsApi(error: error)
             }
         }
     }
@@ -50,20 +68,18 @@ extension LeaguesDetails_modelController: ILeagueDetails_model_CoreData{
                 self.leagueDetailsPresenter_coreData?.onFailed_CoreData(error: error)
                 return
             }else{
-                print("@@@@@@@@@@@@@@@@@ LeaguesDetails_modelController addToFavorites_inCoreData")
                 self.leagueDetailsPresenter_coreData!.onSuccess_CoreData()
             }
         }
     }
 
-    func removeFromFavorites_fromCoreData(league: League, appDelegate: AppDelegate) {
-        DBManager.shared.deleteLeague(league: league, appDelegate: appDelegate) { error in
+    func removeFromFavorites_fromCoreData(leagueId: String, appDelegate: AppDelegate) {
+        DBManager.shared.deleteLeague(leagueId: leagueId, appDelegate: appDelegate) { error in
             if let error = error {
                 self.leagueDetailsPresenter_coreData?.onFailed_CoreData(error: error)
                 return
             }
             else{
-                print("@@@@@@@@@@@@@@@@@ LeaguesDetails_modelController removeFromFavorites_fromCoreData")
                 self.leagueDetailsPresenter_coreData!.onSuccess_CoreData()
             }
         }

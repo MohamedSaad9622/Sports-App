@@ -24,7 +24,7 @@ class DBManager {
     func addLeague(new_league: Country, appDelegate: AppDelegate, completion: @escaping ((Error?) -> Void)) {
         // check is favorites league or not first
         var foundedBefore: Bool = false
-        getFavoritesLeague_coreData(appDelegate: appDelegate) { Leagues, error in
+        getFavoriteLeagues_coreData(appDelegate: appDelegate) { Leagues, error in
             if let Leagues = Leagues {
                 for league in Leagues {
                     if new_league.idLeague == league.idLeague{
@@ -34,6 +34,7 @@ class DBManager {
                 }
             }
         }
+        
         if foundedBefore == false {
             let managedContext = appDelegate.persistentContainer.viewContext
             if let entity = NSEntityDescription.entity(forEntityName: Constants.league_entityName, in: managedContext){
@@ -53,10 +54,10 @@ class DBManager {
         
     }
 
-//MARK: -   Fetch League
+//MARK: -   Fetch Leagues
 
 
-    func getFavoritesLeague_coreData(appDelegate:AppDelegate, completion: @escaping (([League]?,Error?) -> Void)) {
+    func getFavoriteLeagues_coreData(appDelegate:AppDelegate, completion: @escaping (([League]?,Error?) -> Void)) {
 
         let managedContext = appDelegate.persistentContainer.viewContext
 
@@ -71,12 +72,30 @@ class DBManager {
         }
 
     }
+    
+    
+//MARK: -   Fetch League
+    
+    func getLeague(leagueId: String, appDelegate:AppDelegate) -> League {
+        var league: [League] = []
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSManagedObject>(entityName: "League")
+        let predicate = NSPredicate(format: "idLeague == %@", leagueId)
+        request.predicate = predicate
+        do {
+            league = try managedContext.fetch(request) as! [League]
+        } catch let error as NSError {
+            print("error in fetch movies")
+            print(error.localizedDescription)
+        }
+        return league[0]
+    }
 
 
 //MARK: -    Delete League
     
-    func deleteLeague(league:League ,appDelegate:AppDelegate, completion: @escaping ((Error?) -> Void)) {
-        
+    func deleteLeague(leagueId: String ,appDelegate:AppDelegate, completion: @escaping ((Error?) -> Void)) {
+        let league = getLeague(leagueId: leagueId, appDelegate: appDelegate)
         let managedContext = appDelegate.persistentContainer.viewContext
         do {
             managedContext.delete(league)

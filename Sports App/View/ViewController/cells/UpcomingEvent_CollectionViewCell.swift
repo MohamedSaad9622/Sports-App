@@ -18,10 +18,13 @@ class UpcomingEvent_CollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
 
-    func setCell(event:Event) {
-        self.eventName_label.text = event.strEvent
-        self.eventDate_label.text = event.dateEventLocal
-        self.eventTime_label.text = event.strTimeLocal
+    func setCell(event: Event) {
+//        self.eventName_label.text = event.strEvent
+//        self.eventDate_label.text = event.dateEventLocal
+//        self.eventTime_label.text = event.strTimeLocal
+        self.eventName_label.text = "event.strEvent"
+        self.eventDate_label.text = "1-2-2022"
+        self.eventTime_label.text = "12:12"
     }
     
 }

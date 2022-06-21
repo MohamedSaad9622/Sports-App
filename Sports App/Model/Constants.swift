@@ -22,6 +22,8 @@ struct Constants {
     static let favoritesViewController           = "FavoritesViewController"
     static let leaguesViewController              = "LeaguesViewController"
     
+    static let teamDetailsViewController_ID            = "TeamDetailsViewController"
+    
 //MARK: -  collection cells identifier
     
     static let sports_collectionCell_identifier        = "sports_cell"
@@ -44,6 +46,7 @@ struct Constants {
 
     
 //MARK: -   Url
+    
     static let sports_url_string               = "https://www.thesportsdb.com/api/v1/json/2/all_sports.php"
     
     // for search for leagues in sport
@@ -53,11 +56,17 @@ struct Constants {
         return "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=\(sport)"
     }
     
-    // temporary
+
     var leagueID:String = ""
     var events_url: String{
         return "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=\(leagueID)"
     }
+    
+    var leagueName: String = ""
+    var teams_url: String {
+        return "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=\(leagueName)"
+    }
+    
     
 //MARK: - Database
     

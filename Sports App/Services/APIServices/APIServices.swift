@@ -12,4 +12,5 @@ protocol APIService {
     func fetch_sports(url:String, completion: @escaping (([Sport]?, Error?) -> Void))
     func fetch_leagues(sport:String, completion: @escaping (([Country]?, Error?) -> Void))
     func fetch_events(leagueID:String, completion: @escaping (([Event]?,Error?) -> Void ) )
+    func fetch_Teams(leagueName:String, completion: @escaping (([Team]?, Error?) -> Void ) )
 }

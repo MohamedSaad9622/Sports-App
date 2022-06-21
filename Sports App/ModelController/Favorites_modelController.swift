@@ -16,7 +16,7 @@ class Favorites_modelController: IFavorites_model {
     }
     
     func fetchFavoritesLeague(appDelegate: AppDelegate) {
-        DBManager.shared.getFavoritesLeague_coreData(appDelegate: appDelegate) { leagues, error in
+        DBManager.shared.getFavoriteLeagues_coreData(appDelegate: appDelegate) { leagues, error in
             if let error = error {
                 self.favoritesPresenter.onFailed(error: error)
             }
