@@ -54,9 +54,8 @@ class NetworkManager: APIService {
     
 //MARK: -  fetch events
     
-    func fetch_events(leagueID:String, completion: @escaping (([Event]?, Error?) -> Void ) ) {
-        if let url = URL(string: Constants(leagueID: leagueID).events_url){
-            print("******************* \(url) ***** \(leagueID)")
+    func fetch_events(leagueID:String,leagueSeason: String, completion: @escaping (([Event]?, Error?) -> Void ) ) {
+        if let url = URL(string: Constants(leagueID: leagueID,leagueSeason: leagueSeason).events_url){
             let request = URLRequest(url: url)
             let session = URLSession(configuration: URLSessionConfiguration.default)
             let task    = session.dataTask(with: request) { data, response, error in
@@ -65,12 +64,10 @@ class NetworkManager: APIService {
                 }
                 if let data = data {
                     if let decodedData: Events = convertFromJson(data: data){
-                        print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  decoded correct \(decodedData)")
                         completion(decodedData.events, nil)
                     }
                 }
                 if error == nil && data == nil {
-                    print("*************** decode data nil *****************")
                 }
             }
             task.resume()
@@ -82,7 +79,6 @@ class NetworkManager: APIService {
         
     func fetch_Teams(leagueName:String, completion: @escaping (([Team]?, Error?) -> Void ) ) {
         if let url = URL(string: Constants(leagueName: leagueName).teams_url){
-            print("******************* \(url) ***** \(leagueName)")
             let request = URLRequest(url: url)
             let session = URLSession(configuration: URLSessionConfiguration.default)
             let task    = session.dataTask(with: request) { data, response, error in

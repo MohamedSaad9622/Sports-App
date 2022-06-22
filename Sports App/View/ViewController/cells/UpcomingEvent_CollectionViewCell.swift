@@ -19,12 +19,9 @@ class UpcomingEvent_CollectionViewCell: UICollectionViewCell {
     }
 
     func setCell(event: Event) {
-//        self.eventName_label.text = event.strEvent
-//        self.eventDate_label.text = event.dateEventLocal
-//        self.eventTime_label.text = event.strTimeLocal
-        self.eventName_label.text = "event.strEvent"
-        self.eventDate_label.text = "1-2-2022"
-        self.eventTime_label.text = "12:12"
+        self.eventName_label.text = event.strEvent
+        self.eventDate_label.text = event.dateEvent
+        self.eventTime_label.text = event.strTime
     }
     
 }

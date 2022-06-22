@@ -22,13 +22,14 @@ class LatestResults_CollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setCell() {
-        self.firstTeam_label.text = "first team"
-        self.secondTeamName_label.text = "second team"
-        self.firstScore_label.text = "10"
-        self.secondScore_label.text = "1"
-        self.date_label.text = "10-2-2022"
-        self.time_label.text = "12:00 AM"
+    func setCell(event: Event) {
+        self.firstTeam_label.text = event.strHomeTeam
+        self.secondTeamName_label.text = event.strAwayTeam
+        self.firstScore_label.text = event.intHomeScore
+        self.secondScore_label.text = event.intAwayScore
+        self.date_label.text = event.dateEvent
+        self.time_label.text = event.strTime
+        
     }
    
 

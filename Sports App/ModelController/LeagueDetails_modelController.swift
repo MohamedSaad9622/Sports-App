@@ -26,22 +26,36 @@ class LeaguesDetails_modelController {
 
 extension LeaguesDetails_modelController: ILeagueDetails_model_API{
     
-    func fetchEventsFromAPI(leagueID: String) {
+    
+    func fetchLatestResultsFromAPI(leagueID: String, leagueSeason: String) {
         
-        apiService.fetch_events(leagueID: leagueID) { events, error in
+        apiService.fetch_events(leagueID: leagueID, leagueSeason: leagueSeason) { events, error in
             if let events = events {
-                print("&&&&&&&&&&&&&&&&&& fetchEventsFromAPI done")
-                self.leagueDetailsPresenter_Api?.onSuccess_Api(events: events)
+                self.leagueDetailsPresenter_Api?.onSuccess_LatestResultsEvents(events: events)
             }
             if let error = error {
-                print("&&&&&&&&&&&&&&&&&& fetchEventsFromAPI error")
-                self.leagueDetailsPresenter_Api?.onFailed_Api(error: error)
+                self.leagueDetailsPresenter_Api?.onFailed_LatestResultsEvents(error: error)
             }
-            if error == nil && events == nil {
-                print("&&&&&&&&&&&&&&&&&& fetchEventsFromAPI nilllllllllllllllllllllllllllllllllllllll")
+
+        }
+    }
+    
+    
+    func fetchEventsFromAPI(leagueID: String, leagueSeason: String) {
+        
+        apiService.fetch_events(leagueID: leagueID, leagueSeason: leagueSeason) { events, error in
+            if let events = events {
+                self.leagueDetailsPresenter_Api?.onSuccess_UpCommingEvents(events: events)
+            }
+            if let error = error {
+                self.leagueDetailsPresenter_Api?.onFailed_UpCommingEvents(error: error)
             }
         }
     }
+    
+    
+    
+    
     
     func fetchTeamsFromAPI(leagueName: String) {
 
@@ -54,6 +68,8 @@ extension LeaguesDetails_modelController: ILeagueDetails_model_API{
             }
         }
     }
+    
+    
 }
 
 
@@ -63,7 +79,7 @@ extension LeaguesDetails_modelController: ILeagueDetails_model_API{
 extension LeaguesDetails_modelController: ILeagueDetails_model_CoreData{
     
     func addToFavorites_inCoreData(league: Country, appDelegate: AppDelegate) {
-        DBManager.shared.addLeague(new_league: league, appDelegate: appDelegate) { error in
+        DBManager.shared.addLeagueToFavorites(new_league: league, appDelegate: appDelegate) { error in
             if let error = error {
                 self.leagueDetailsPresenter_coreData?.onFailed_CoreData(error: error)
                 return

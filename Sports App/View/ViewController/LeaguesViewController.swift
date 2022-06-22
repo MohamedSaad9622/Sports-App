@@ -23,6 +23,7 @@ class LeaguesViewController: UIViewController {
         leagues_tableView.delegate = self
         leagues_tableView.dataSource = self
         
+
         self.title = "Leagues"
         
         let leaguesPresenter: ILeaguesPresenter = Leagues_presenter(leaguesView: self)
@@ -46,12 +47,7 @@ extension LeaguesViewController: ILeaguesView{
     }
     
     func postError(error: Error) {
-        let alert = UIAlertController(title: "Alert!", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        addAlert(title: "Alert!", message: "\(error.localizedDescription)", ActionTitle: "Cancle", viewController: self)
     }
     
 }

@@ -19,7 +19,6 @@ class Teams_CollectionViewCell: UICollectionViewCell {
     
     func setCell(team:Team) {
         self.team_imageView.sd_setImage(with: URL(string: team.strTeamBadge), placeholderImage: UIImage(named: "women.jpeg"))
-        print("%%%%%%%%%%image : \(team.strTeamBadge)")
     }
 
 }

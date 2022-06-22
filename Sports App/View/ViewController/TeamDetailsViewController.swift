@@ -11,12 +11,12 @@ import SDWebImage
 
 class TeamDetailsViewController: UIViewController {
 
-    @IBOutlet weak var teamTitle: UILabel!
-    @IBOutlet weak var teamImage: UIImageView!
-    @IBOutlet weak var teamFormatedYear: UILabel!
-    @IBOutlet weak var teamLeague: UILabel!
-    @IBOutlet weak var teamSports: UILabel!
-    @IBOutlet weak var teamDiscreption: UILabel!
+    @IBOutlet weak private var teamTitle: UILabel!
+    @IBOutlet weak private var teamImage: UIImageView!
+    @IBOutlet weak private var teamFormatedYear: UILabel!
+    @IBOutlet weak private var teamLeague: UILabel!
+    @IBOutlet weak private var teamSports: UILabel!
+    @IBOutlet weak private var teamDiscreption: UILabel!
 
     
     
@@ -47,7 +47,6 @@ class TeamDetailsViewController: UIViewController {
     @IBAction func website(_ sender: UIButton) {
         if let strWebsite = team?.strWebsite{
             guard let url = URL(string: "https://\(strWebsite)") else { return }
-            print("$$$$$$$$$$$$\(url)")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
@@ -56,7 +55,6 @@ class TeamDetailsViewController: UIViewController {
     @IBAction func twitterButton(_ sender: Any) {
         if let twitter = team?.strTwitter {
             guard let url = URL(string: "https://\(twitter)") else {return}
-            print("$$$$$$$$$$$$\(url)")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
@@ -64,7 +62,6 @@ class TeamDetailsViewController: UIViewController {
     @IBAction func facebookButton(_ sender: Any) {
         if let facebook = team?.strFacebook {
             guard let url = URL(string: "https://\(facebook)") else {return}
-            print("$$$$$$$$$$$$\(url)")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
@@ -72,7 +69,6 @@ class TeamDetailsViewController: UIViewController {
     @IBAction func youtubeButton(_ sender: Any) {
         if let youtube = team?.strYoutube {
             guard let url = URL(string: "https://\(youtube)") else {return}
-            print("$$$$$$$$$$$$\(url)")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
@@ -80,7 +76,6 @@ class TeamDetailsViewController: UIViewController {
     @IBAction func instegram(_ sender: Any) {
         if let instegram = team?.strInstagram {
             guard let url = URL(string: "https://\(instegram)") else {return}
-            print("$$$$$$$$$$$$\(url)")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }

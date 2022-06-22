@@ -17,16 +17,16 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook" translatesAutoresizingMaskIntoConstraints="NO" id="A70-eA-fdS">
-                        <rect key="frame" x="0.0" y="0.0" width="216" height="196"/>
+                        <rect key="frame" x="5" y="10" width="206" height="176"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="A70-eA-fdS" secondAttribute="trailing" id="QWH-Ku-bPe"/>
-                <constraint firstItem="A70-eA-fdS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="RPt-Hw-qj8"/>
-                <constraint firstAttribute="bottom" secondItem="A70-eA-fdS" secondAttribute="bottom" id="ccn-k8-Qw5"/>
-                <constraint firstItem="A70-eA-fdS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="edK-tA-Pn0"/>
+                <constraint firstAttribute="trailing" secondItem="A70-eA-fdS" secondAttribute="trailing" constant="5" id="QWH-Ku-bPe"/>
+                <constraint firstItem="A70-eA-fdS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="RPt-Hw-qj8"/>
+                <constraint firstAttribute="bottom" secondItem="A70-eA-fdS" secondAttribute="bottom" constant="10" id="ccn-k8-Qw5"/>
+                <constraint firstItem="A70-eA-fdS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="edK-tA-Pn0"/>
             </constraints>
             <size key="customSize" width="216" height="196"/>
             <connections>

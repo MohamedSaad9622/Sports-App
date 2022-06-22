@@ -58,8 +58,10 @@ struct Constants {
     
 
     var leagueID:String = ""
+    
+    var leagueSeason: String = ""
     var events_url: String{
-        return "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=\(leagueID)"
+        return "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=\(leagueID)&s=\(leagueSeason)"
     }
     
     var leagueName: String = ""
@@ -78,3 +80,4 @@ struct Constants {
 enum dbKeys:String {
 case id = "idLeague", leagueName = "strLeague", leagueImage = "strBadge", leagueYoutube = "strYoutube"
 }
+

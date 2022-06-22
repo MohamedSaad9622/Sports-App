@@ -11,8 +11,8 @@ import SDWebImage
 
 class leaguesTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var leagueImage_imageView: UIImageView!
-    @IBOutlet weak var leagueTitle_label: UILabel!
+    @IBOutlet weak private var leagueImage_imageView: UIImageView!
+    @IBOutlet weak private var leagueTitle_label: UILabel!
 
     var league_link:String = ""
     

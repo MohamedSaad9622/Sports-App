@@ -20,7 +20,9 @@ class LeagueDetails_ViewController: UIViewController {
     var previousViewController : String?
     
     var upcomingEvents:[Event] = []
+    var latestResult: [Event] = []
     var teams: [Team] = []
+    
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -31,30 +33,18 @@ class LeagueDetails_ViewController: UIViewController {
             self.title = league.strLeague
         }
         
-        // teams collectionView
-        self.teams_collectionView.delegate   = self
-        self.teams_collectionView.dataSource = self
-        self.teams_collectionView.register(UINib(nibName: Constants.teams_nib_name, bundle: nil), forCellWithReuseIdentifier: Constants.teams_collectionView_identifier)
+        registerCells()
         
-        // LatestResults collectionView
-        self.LatestResults_collectionView.delegate   = self
-        self.LatestResults_collectionView.dataSource = self
-        LatestResults_collectionView.register(UINib(nibName: Constants.latestResults_nib_name, bundle: nil), forCellWithReuseIdentifier: Constants.latestResults_collectionView_identifier)
+  
         
-        // upcomingEvents collectionView
-        self.upcomingEvents_collectionView.delegate   = self
-        self.upcomingEvents_collectionView.dataSource = self
-        upcomingEvents_collectionView.register(UINib(nibName: Constants.upcomingEvent_nib_name, bundle: nil), forCellWithReuseIdentifier: Constants.upcomingEvent_collectionView_identifier)
-        
-        // get events
         let leagueDetails_presenter : ILeagueDetails_presenter_API = LeagueDetails_presenter(leagueDetailsView_Api: self)
-        leagueDetails_presenter.fetchEvents(leagueID: "4328"/*league?.idLeague ?? ""*/)
+       
         if let league = league {
+            
+            leagueDetails_presenter.fetchUpCommingEvents(leagueID: league.idLeague)
+            leagueDetails_presenter.fetchLatestResultsEvents(leagueID: league.idLeague)
             leagueDetails_presenter.fetchTeams(leagueName: league.strLeague)
-        }else{
-            print("!!!!!!!!!!!!!!!!!!!!!! nil view controller")
         }
-        
         
     }
     
@@ -66,6 +56,8 @@ class LeagueDetails_ViewController: UIViewController {
     
 }
     
+
+
 
 // MARK: -                               BUTTONS ACTION
 
@@ -83,9 +75,7 @@ extension LeagueDetails_ViewController {
             
             if let league = league {
                 leagueDetails_presenter.removeFromFavorites(leagueId: league.idLeague , appDelegate: appDelegate)
-                print("^^^^^^^^^^^^^%%%%%%%%%%%%%%%%%%%%%%%%%%%")
             }
-            print("^^^^^^^^^^^^^%%%%%%%%%%%%%%%%%%%%%%%%%%%^^^^^^^^^^^^^^^^^^^^^^^^^^")
             self.addToFavorite_button.image = UIImage(systemName: "heart")
         }
         else{
@@ -102,23 +92,13 @@ extension LeagueDetails_ViewController {
 //MARK: -   CoreData Protocols
 
 extension LeagueDetails_ViewController: ILeagueDetails_view_CoreData{
+   
     func savedIn_CoreData() {
-        print("@@@@@@@@@@@@@@@@@ LeagueDetails_ViewController savedIn_CoreData")
-        let alert = UIAlertController(title: "Done", message: "Saved", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        addAlert(title: "Done", message: "changes saved", ActionTitle: "OK", viewController: self)
     }
     
     func saveFailed_CoreData(error: Error) {
-        let alert = UIAlertController(title: "Alert!", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancle", style: .cancel, handler: nil))
-        
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        addAlert(title: "Alert!", message: "\(error.localizedDescription)", ActionTitle: "Cancle", viewController: self)
     }
     
     
@@ -126,7 +106,7 @@ extension LeagueDetails_ViewController: ILeagueDetails_view_CoreData{
 
 
 
-//MARK: -   Api Protocol
+//MARK: -                                   Api Protocol
 
 
 
@@ -134,7 +114,6 @@ extension LeagueDetails_ViewController: ILeagueDetails_view_API{
     
     func render_upcomingView(events: [Event]) {
         self.upcomingEvents = events
-        print("^^^^^^^^%%%%%%%%%%%% View events \(events)")
         DispatchQueue.main.async {
             self.upcomingEvents_collectionView.reloadData()
         }
@@ -142,29 +121,31 @@ extension LeagueDetails_ViewController: ILeagueDetails_view_API{
     }
     
     func postError_upcomingView(error: Error) {
-        let alert = UIAlertController(title: "Alert!", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        addAlert(title: "Alert!", message: "\(error.localizedDescription)", ActionTitle: "OK", viewController: self)
+    }
+    
+    
+    func render_LatestResultView(events: [Event]) {
+        self.latestResult = events
         DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
+            self.LatestResults_collectionView.reloadData()
         }
+    }
+    
+    func postError_LatestResultView(error: Error) {
+        addAlert(title: "Alert!", message: "\(error.localizedDescription)", ActionTitle: "Cancle", viewController: self)
     }
     
     
     func render_TeamsView(teams: [Team]) {
         self.teams = teams
-        print("^^^^^^^^^^^^^^^^ teams \(teams)")
         DispatchQueue.main.async {
-            print("^^^^^^^^^^^^^^^^ teams \(teams)")
             self.teams_collectionView.reloadData()
         }
     }
     
     func postError_TeamsView(error: Error) {
-        let alert = UIAlertController(title: "Alert!", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        addAlert(title: "Alert!", message: "\(error.localizedDescription)", ActionTitle: "Cancle", viewController: self)
     }
     
 }
@@ -172,7 +153,7 @@ extension LeagueDetails_ViewController: ILeagueDetails_view_API{
 
 
 
-//MARK: - CollectionView  Protocols
+//MARK: -                               CollectionView  Protocols
 
 
 extension LeagueDetails_ViewController:UICollectionViewDelegate{
@@ -181,15 +162,18 @@ extension LeagueDetails_ViewController:UICollectionViewDelegate{
 
 extension LeagueDetails_ViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         switch collectionView {
+            
         case teams_collectionView:
-            print("$$$$$$$$$$$$$$$$$$$$  teams.count = \(teams.count)")
             return teams.count
+            
         case LatestResults_collectionView:
-            return 20
+            return latestResult.count
+            
         case upcomingEvents_collectionView:
-            print("$$$$$$$$$$$$$$$$$$$$  upcomingEvents.count = \(upcomingEvents.count)")
             return upcomingEvents.count
+            
         default:
             return 0
         }
@@ -201,20 +185,16 @@ extension LeagueDetails_ViewController:UICollectionViewDataSource{
         case teams_collectionView:
             let cell = teams_collectionView.dequeueReusableCell(withReuseIdentifier: Constants.teams_collectionView_identifier, for: indexPath) as! Teams_CollectionViewCell
             cell.setCell(team: teams[indexPath.row])
-            print("^^^^^^^^^^^^^^^^ teams_collectionView")
             return cell
             
         case LatestResults_collectionView:
             let cell = LatestResults_collectionView.dequeueReusableCell(withReuseIdentifier: Constants.latestResults_collectionView_identifier, for: indexPath) as! LatestResults_CollectionViewCell
-            cell.setCell()
-            print("^^^^^^^^^^^^^^^^ LatestResults_collectionView")
+            cell.setCell(event: latestResult[indexPath.row])
             return cell
             
         case upcomingEvents_collectionView:
             let cell = upcomingEvents_collectionView.dequeueReusableCell(withReuseIdentifier: Constants.upcomingEvent_collectionView_identifier, for: indexPath) as! UpcomingEvent_CollectionViewCell
-            cell.setCell(event: upcomingEvents[indexPath.section])
-            print(upcomingEvents[indexPath.section])
-            print("^^^^^^^^^^^^^^^^ upcomingEvents_collectionView")
+            cell.setCell(event: upcomingEvents[indexPath.row])
             return cell
             
         default:
@@ -244,5 +224,31 @@ extension LeagueDetails_ViewController:UICollectionViewDelegateFlowLayout{
     }
 
 
+}
+
+
+
+//MARK: -                                           cells register
+
+
+extension LeagueDetails_ViewController{
+    
+    func registerCells() {
+        // teams collectionView
+        self.teams_collectionView.delegate   = self
+        self.teams_collectionView.dataSource = self
+        self.teams_collectionView.register(UINib(nibName: Constants.teams_nib_name, bundle: nil), forCellWithReuseIdentifier: Constants.teams_collectionView_identifier)
+        
+        // LatestResults collectionView
+        self.LatestResults_collectionView.delegate   = self
+        self.LatestResults_collectionView.dataSource = self
+        LatestResults_collectionView.register(UINib(nibName: Constants.latestResults_nib_name, bundle: nil), forCellWithReuseIdentifier: Constants.latestResults_collectionView_identifier)
+        
+        // upcomingEvents collectionView
+        self.upcomingEvents_collectionView.delegate   = self
+        self.upcomingEvents_collectionView.dataSource = self
+        upcomingEvents_collectionView.register(UINib(nibName: Constants.upcomingEvent_nib_name, bundle: nil), forCellWithReuseIdentifier: Constants.upcomingEvent_collectionView_identifier)
+    }
+    
 }
 

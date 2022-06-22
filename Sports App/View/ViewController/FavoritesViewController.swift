@@ -40,7 +40,6 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController: IFavorites_View{
     
     func render_upcomingView(leagues: [Country]) {
-        print("@@@@@@@@@@@@@@@@@ FavoritesViewController")
         favoriteLeagues = leagues
         DispatchQueue.main.async {
             self.favoriteLeagues_tableView.reloadData()
@@ -48,11 +47,7 @@ extension FavoritesViewController: IFavorites_View{
     }
     
     func postError_upcomingView(error: Error) {
-        let alert = UIAlertController(title: "Alert!", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancle", style: .cancel, handler: nil))
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        addAlert(title: "Alert!", message: "\(error.localizedDescription)", ActionTitle: "Cancel", viewController: self)
     }
     
     
@@ -60,7 +55,8 @@ extension FavoritesViewController: IFavorites_View{
 
 
 
-//MARK: - TableView
+//MARK: -                                   TableView
+
 
 extension FavoritesViewController: UITableViewDelegate{
 
@@ -87,11 +83,7 @@ extension FavoritesViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if !Connectivity.isConnectedToInternet() {
-            let alert = UIAlertController(title: "Alert!", message: "There is no internet connection", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancle", style: .cancel, handler: nil))
-            DispatchQueue.main.async {
-                self.present(alert, animated: true, completion: nil)
-            }
+            addAlert(title: "Alert!", message: "There is no internet connection", ActionTitle: "Cancel", viewController: self)
             return
         }
         

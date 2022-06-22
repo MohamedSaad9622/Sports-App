@@ -8,7 +8,6 @@
 import Foundation
 
 struct Leagues: Codable {
-    // array of dictionary of type string : string?
     let countries: [Country]
 }
 

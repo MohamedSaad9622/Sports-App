@@ -14,15 +14,22 @@ protocol ILeagueDetails_view_API {
     func render_upcomingView(events:[Event])
     func postError_upcomingView(error:Error)
     
+    func render_LatestResultView(events:[Event])
+    func postError_LatestResultView(error:Error)
+    
     func render_TeamsView(teams:[Team])
     func postError_TeamsView(error:Error)
 }
 
 protocol ILeagueDetails_presenter_API {
 
-    func fetchEvents(leagueID:String)
-    func onSuccess_Api(events: [Event])
-    func onFailed_Api(error:Error)
+    func fetchUpCommingEvents(leagueID:String)
+    func onSuccess_UpCommingEvents(events: [Event])
+    func onFailed_UpCommingEvents(error:Error)
+    
+    func fetchLatestResultsEvents(leagueID:String)
+    func onSuccess_LatestResultsEvents(events: [Event])
+    func onFailed_LatestResultsEvents(error:Error)
     
     func fetchTeams(leagueName: String)
     func onSuccess_TeamsApi(teams:[Team])
@@ -30,8 +37,8 @@ protocol ILeagueDetails_presenter_API {
 }
 
 protocol ILeagueDetails_model_API{
-    func fetchEventsFromAPI(leagueID:String)
-    
+    func fetchEventsFromAPI(leagueID:String, leagueSeason: String)
+    func fetchLatestResultsFromAPI(leagueID:String, leagueSeason: String)
     func fetchTeamsFromAPI(leagueName: String)
 }
 

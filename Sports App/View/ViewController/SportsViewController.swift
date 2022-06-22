@@ -45,12 +45,7 @@ extension SportsViewController: ISportsView{
     }
     
     func postError(error: Error) {
-        let alert = UIAlertController(title: "Alert!", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        addAlert(title: "Alert!", message: "\(error.localizedDescription)", ActionTitle: "cancel", viewController: self)
     }
     
     
@@ -64,6 +59,7 @@ extension SportsViewController:UICollectionViewDelegate{
 }
 
 extension SportsViewController:UICollectionViewDataSource{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sports_list.count
     }
@@ -87,11 +83,12 @@ extension SportsViewController:UICollectionViewDataSource{
     
 }
 
+
 extension SportsViewController:UICollectionViewDelegateFlowLayout{
     // to set only two cell in row
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // make only two cell in same row
         return CGSize(width: collectionView.frame.size.width/2, height: collectionView.frame.size.height/3)
     }
+
     
 }

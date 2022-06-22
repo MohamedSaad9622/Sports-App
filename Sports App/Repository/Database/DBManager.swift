@@ -17,25 +17,16 @@ class DBManager {
     private init(){
 
     }
+    
+    
 
-// MARK: -          Add League
+// MARK: -          Add League to favorites
 
 
-    func addLeague(new_league: Country, appDelegate: AppDelegate, completion: @escaping ((Error?) -> Void)) {
-        // check is favorites league or not first
-        var foundedBefore: Bool = false
-        getFavoriteLeagues_coreData(appDelegate: appDelegate) { Leagues, error in
-            if let Leagues = Leagues {
-                for league in Leagues {
-                    if new_league.idLeague == league.idLeague{
-                        foundedBefore = true
-                        return
-                    }
-                }
-            }
-        }
+    func addLeagueToFavorites(new_league: Country, appDelegate: AppDelegate, completion: @escaping ((Error?) -> Void)) {
         
-        if foundedBefore == false {
+        if getLeague(leagueId: new_league.idLeague, appDelegate: appDelegate) == nil {
+            
             let managedContext = appDelegate.persistentContainer.viewContext
             if let entity = NSEntityDescription.entity(forEntityName: Constants.league_entityName, in: managedContext){
                 let league = NSManagedObject(entity: entity, insertInto: managedContext)
@@ -51,10 +42,12 @@ class DBManager {
                 }
             }
         }
-        
     }
+    
+    
+    
 
-//MARK: -   Fetch Leagues
+//MARK: -                           Fetch Leagues
 
 
     func getFavoriteLeagues_coreData(appDelegate:AppDelegate, completion: @escaping (([League]?,Error?) -> Void)) {
@@ -73,10 +66,36 @@ class DBManager {
 
     }
     
+
     
-//MARK: -   Fetch League
     
-    func getLeague(leagueId: String, appDelegate:AppDelegate) -> League {
+    
+//MARK: -                               Delete League
+        
+        
+        
+        func deleteLeague(leagueId: String ,appDelegate:AppDelegate, completion: @escaping ((Error?) -> Void)) {
+            if let league = getLeague(leagueId: leagueId, appDelegate: appDelegate){
+                let managedContext = appDelegate.persistentContainer.viewContext
+                do {
+                    managedContext.delete(league)
+                    try managedContext.save()
+                    completion(nil)
+                } catch let error as NSError {
+                    completion(error)
+                }
+            }
+        }
+    
+    
+    
+    
+//MARK: -                           Fetch League
+    
+    
+    // to use in delete league from favorites and check is founded in favorites or no
+    
+    func getLeague(leagueId: String, appDelegate:AppDelegate) -> League? {
         var league: [League] = []
         let managedContext = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSManagedObject>(entityName: "League")
@@ -88,23 +107,12 @@ class DBManager {
             print("error in fetch movies")
             print(error.localizedDescription)
         }
-        return league[0]
-    }
-
-
-//MARK: -    Delete League
-    
-    func deleteLeague(leagueId: String ,appDelegate:AppDelegate, completion: @escaping ((Error?) -> Void)) {
-        let league = getLeague(leagueId: leagueId, appDelegate: appDelegate)
-        let managedContext = appDelegate.persistentContainer.viewContext
-        do {
-            managedContext.delete(league)
-            try managedContext.save()
-            completion(nil)
-        } catch let error as NSError {
-            completion(error)
+        if league.count > 0{
+            return league[0]
         }
+        return nil
     }
+
 
 
 
