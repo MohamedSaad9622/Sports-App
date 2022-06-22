@@ -16,14 +16,16 @@ class CollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
     }
     
     func setCell(image:String, title:String) {
         sports_cell_title.text = title
-        sports_cell_image.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "women.jpeg"))
+        sports_cell_image.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "playstore"))
 
     }
 
     
 
 }
+

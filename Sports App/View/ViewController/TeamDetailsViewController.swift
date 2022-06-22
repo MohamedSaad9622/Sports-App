@@ -30,12 +30,12 @@ class TeamDetailsViewController: UIViewController {
         }
         
         if let team = team {
-            self.teamTitle.text = team.strTeam
-            self.teamFormatedYear.text = team.intFormedYear
-            self.teamLeague.text = team.strLeague
-            self.teamSports.text = team.strSport
-            self.teamDiscreption.text = team.strDescriptionEN
-            self.teamImage.sd_setImage(with: URL(string: team.strTeamBadge), placeholderImage: UIImage(named: "women.jpeg"))
+            self.teamTitle.text! += team.strTeam
+            self.teamFormatedYear.text! += team.intFormedYear
+            self.teamLeague.text! += team.strLeague
+            self.teamSports.text! += team.strSport
+            self.teamDiscreption.text! += team.strDescriptionEN
+            self.teamImage.sd_setImage(with: URL(string: team.strTeamBadge), placeholderImage: UIImage(named: "playstore"))
         }
     }
 

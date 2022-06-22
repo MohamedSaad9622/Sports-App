@@ -12,6 +12,7 @@ class SportsViewController: UIViewController {
     @IBOutlet weak var sports_collectionView: UICollectionView!
     
     var sports_list: [Sport] = []
+    var numberOfCellsInColumn = 3
     
     
     
@@ -20,13 +21,21 @@ class SportsViewController: UIViewController {
 
         self.sports_collectionView.register(UINib(nibName: Constants.sports__nib_name, bundle: nil), forCellWithReuseIdentifier: Constants.sports_collectionCell_identifier)
         
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         let sportsPresenter : ISportsPresenter = Sports_presenter(sportsView: self)
         sportsPresenter.fetchSports(url: Constants.sports_url_string)
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+            super.viewWillTransition(to: size, with: coordinator)
+            if UIDevice.current.orientation.isLandscape {
+                numberOfCellsInColumn = 1
+            }else{
+                numberOfCellsInColumn = 3
+            }
+        }
     
 }
 
@@ -87,8 +96,9 @@ extension SportsViewController:UICollectionViewDataSource{
 extension SportsViewController:UICollectionViewDelegateFlowLayout{
     // to set only two cell in row
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width/2, height: collectionView.frame.size.height/3)
+        return CGSize(width: collectionView.bounds.width / 2, height: collectionView.bounds.height / CGFloat(numberOfCellsInColumn))
     }
 
+    
     
 }

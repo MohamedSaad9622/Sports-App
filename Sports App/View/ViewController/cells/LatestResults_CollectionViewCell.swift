@@ -29,7 +29,7 @@ class LatestResults_CollectionViewCell: UICollectionViewCell {
         self.secondScore_label.text = event.intAwayScore
         self.date_label.text = event.dateEvent
         self.time_label.text = event.strTime
-        
+
     }
    
 

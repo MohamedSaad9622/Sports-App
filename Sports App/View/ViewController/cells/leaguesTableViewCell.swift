@@ -25,7 +25,7 @@ class leaguesTableViewCell: UITableViewCell {
     func setCell(league:Country) {
         self.leagueTitle_label.text = league.strLeague
         league_link = "https://\(league.strYoutube)"
-        self.leagueImage_imageView.sd_setImage(with: URL(string: league.strBadge), placeholderImage: UIImage(named: "women.jpeg"))
+        self.leagueImage_imageView.sd_setImage(with: URL(string: league.strBadge), placeholderImage: UIImage(named: "playstore"))
     }
     
     

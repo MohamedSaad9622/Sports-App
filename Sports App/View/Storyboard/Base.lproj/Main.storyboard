@@ -18,7 +18,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BII-qs-zUE">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="aBr-1K-bCJ">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -48,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302.89855072463769" y="418.52678571428572"/>
+            <point key="canvasLocation" x="507" y="419"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="k93-MZ-cPc">
@@ -60,7 +60,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Htc-jd-eU3">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="q8F-sA-zef"/>
@@ -79,17 +79,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocX-wT-dmJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1597" y="382"/>
+            <point key="canvasLocation" x="1575" y="419"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="w6M-ar-4dU">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="GQT-kT-fvA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FYm-Kn-ME1">
+                    <tabBar key="tabBar" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="FYm-Kn-ME1">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="5oN-5g-qyY" kind="relationship" relationship="viewControllers" id="us6-Vi-IGK"/>
@@ -104,11 +104,12 @@
         <scene sceneID="wpK-iL-eC5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5oN-5g-qyY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sports" id="bo7-Zc-9jZ"/>
+                    <tabBarItem key="tabBarItem" title="Sports" image="sportscourt.fill" catalog="system" id="bo7-Zc-9jZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q8R-el-bql">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="1" green="0.80144375560000003" blue="0.0046433899549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -121,8 +122,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

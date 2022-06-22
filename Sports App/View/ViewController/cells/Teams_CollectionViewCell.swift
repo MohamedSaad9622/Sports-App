@@ -17,8 +17,8 @@ class Teams_CollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setCell(team:Team) {
-        self.team_imageView.sd_setImage(with: URL(string: team.strTeamBadge), placeholderImage: UIImage(named: "women.jpeg"))
+    func setCell(team: Team) {
+        self.team_imageView.sd_setImage(with: URL(string: team.strTeamBadge), placeholderImage: UIImage(named: "playstore"))
     }
 
 }

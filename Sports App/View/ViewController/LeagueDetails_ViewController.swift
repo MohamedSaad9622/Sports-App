@@ -164,18 +164,18 @@ extension LeagueDetails_ViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         switch collectionView {
-            
+
         case teams_collectionView:
             return teams.count
-            
+
         case LatestResults_collectionView:
             return latestResult.count
-            
+
         case upcomingEvents_collectionView:
             return upcomingEvents.count
-            
+
         default:
-            return 0
+            return 10
         }
 
     }
