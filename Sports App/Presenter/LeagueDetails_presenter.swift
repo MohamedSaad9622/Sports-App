@@ -23,12 +23,14 @@ class LeagueDetails_presenter {
 }
 
 
-//MARK: - conform Api protocol
+//MARK: -                           conform Api protocol
 
 
 extension LeagueDetails_presenter: ILeagueDetails_presenter_API{
 
     // upcomming Events
+    
+    // premier league id = "4328"
     
     func fetchUpCommingEvents(leagueID: String) {
         self.leagueDetails_model = LeaguesDetails_modelController(leagueDetailsPresenter_Api: self)
@@ -79,7 +81,7 @@ extension LeagueDetails_presenter: ILeagueDetails_presenter_API{
 
 
 
-//MARK: - conform coreData protocol
+//MARK: -                               conform coreData protocol
 
 
 extension LeagueDetails_presenter: ILeagueDetails_presenter_CoreData{

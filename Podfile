@@ -8,5 +8,6 @@ target 'Sports App' do
   # Pods for Sports App
   pod 'SDWebImage', '~> 5.0'
   pod 'Alamofire'
+  pod 'lottie-ios'
 
 end

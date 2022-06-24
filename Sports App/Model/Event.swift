@@ -24,5 +24,6 @@ struct Event: Codable {
     let strAwayTeam: String
     let intHomeScore: String
     let intAwayScore: String
+    let strThumb: String
 
 }

@@ -9,11 +9,168 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--League Details-->
+        <scene sceneID="nuU-hh-egu">
+            <objects>
+                <tableViewController storyboardIdentifier="LeagueDetails_ViewController" title="League Details" id="VFO-18-dnu" customClass="LeagueDetails_TableViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="WWe-L7-ADz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <sections>
+                            <tableViewSection id="KBn-XF-8eI">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="45" id="c6g-aV-TOa">
+                                        <rect key="frame" x="20" y="18" width="374" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c6g-aV-TOa" id="BbK-bL-KqO">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFk-go-mU0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="33W-ym-lWM"/>
+                                                    </constraints>
+                                                    <items>
+                                                        <navigationItem title="League Details" id="kJq-Xj-kaQ">
+                                                            <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.backward" catalog="system" id="xJ2-YF-fho">
+                                                                <connections>
+                                                                    <action selector="goBack_button:" destination="VFO-18-dnu" id="MJQ-XH-m9D"/>
+                                                                </connections>
+                                                            </barButtonItem>
+                                                            <barButtonItem key="rightBarButtonItem" title="Item" image="heart" catalog="system" id="k9H-HH-i7o">
+                                                                <connections>
+                                                                    <action selector="addToFavorites_button:" destination="VFO-18-dnu" id="On0-Tr-KQp"/>
+                                                                </connections>
+                                                            </barButtonItem>
+                                                        </navigationItem>
+                                                    </items>
+                                                </navigationBar>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FFk-go-mU0" firstAttribute="top" secondItem="BbK-bL-KqO" secondAttribute="top" id="KxB-0s-7dw"/>
+                                                <constraint firstItem="FFk-go-mU0" firstAttribute="leading" secondItem="BbK-bL-KqO" secondAttribute="leading" id="LOt-zM-Dlh"/>
+                                                <constraint firstAttribute="trailing" secondItem="FFk-go-mU0" secondAttribute="trailing" id="isT-Yj-1m0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Upcoming Events" id="Rh6-QC-brJ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="247" id="Pds-zP-D1z">
+                                        <rect key="frame" x="20" y="113" width="374" height="247"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pds-zP-D1z" id="myg-NR-YlZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="247"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XGZ-ZP-QoR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="247"/>
+                                                    <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QKk-98-50k">
+                                                        <size key="itemSize" width="128" height="128"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells/>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XGZ-ZP-QoR" firstAttribute="top" secondItem="myg-NR-YlZ" secondAttribute="top" id="6iQ-pS-ZP1"/>
+                                                <constraint firstAttribute="trailing" secondItem="XGZ-ZP-QoR" secondAttribute="trailing" id="IeW-W6-quu"/>
+                                                <constraint firstItem="XGZ-ZP-QoR" firstAttribute="leading" secondItem="myg-NR-YlZ" secondAttribute="leading" id="NVh-in-2hU"/>
+                                                <constraint firstAttribute="bottom" secondItem="XGZ-ZP-QoR" secondAttribute="bottom" id="SXw-VC-rFm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Latest Results" id="Scl-4M-W33">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="200" id="ZUO-Sr-2X7">
+                                        <rect key="frame" x="20" y="410" width="374" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZUO-Sr-2X7" id="GLa-Jh-6ol">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZTu-mZ-NSn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
+                                                    <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mFJ-Ni-xj4">
+                                                        <size key="itemSize" width="128" height="128"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells/>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZTu-mZ-NSn" firstAttribute="leading" secondItem="GLa-Jh-6ol" secondAttribute="leading" id="Wlx-1N-eup"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZTu-mZ-NSn" secondAttribute="bottom" id="fZu-ZU-44P"/>
+                                                <constraint firstItem="ZTu-mZ-NSn" firstAttribute="top" secondItem="GLa-Jh-6ol" secondAttribute="top" id="qjK-vi-Rac"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZTu-mZ-NSn" secondAttribute="trailing" id="xij-bl-7X6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Teams" id="lSb-uI-edY">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="198" id="oqd-F0-rfy">
+                                        <rect key="frame" x="20" y="660" width="374" height="198"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oqd-F0-rfy" id="T9p-30-xBy">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="198"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HDJ-1s-XbH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="198"/>
+                                                    <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jLR-P5-mq7">
+                                                        <size key="itemSize" width="128" height="128"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells/>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="HDJ-1s-XbH" firstAttribute="top" secondItem="T9p-30-xBy" secondAttribute="top" id="OSF-X4-qZw"/>
+                                                <constraint firstItem="HDJ-1s-XbH" firstAttribute="leading" secondItem="T9p-30-xBy" secondAttribute="leading" id="UMd-Wg-s58"/>
+                                                <constraint firstAttribute="trailing" secondItem="HDJ-1s-XbH" secondAttribute="trailing" id="cMb-cb-7s7"/>
+                                                <constraint firstAttribute="bottom" secondItem="HDJ-1s-XbH" secondAttribute="bottom" id="iMh-Oy-G9E"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="VFO-18-dnu" id="7kk-rb-FBh"/>
+                            <outlet property="delegate" destination="VFO-18-dnu" id="60j-ip-XwH"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="addToFavorite_button" destination="k9H-HH-i7o" id="NHr-Vy-dWK"/>
+                        <outlet property="latestResults_collectionView" destination="ZTu-mZ-NSn" id="cIY-hZ-lVv"/>
+                        <outlet property="teams_collectionView" destination="HDJ-1s-XbH" id="piq-H8-bAf"/>
+                        <outlet property="upcomingEvents_collectionView" destination="XGZ-ZP-QoR" id="0Kj-Ma-AbO"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xWc-t5-huD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="786.95652173913049" y="-451.33928571428567"/>
+        </scene>
         <!--League Details View Controller-->
         <scene sceneID="Irj-Go-Hvz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WKA-Qv-pRz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="LeagueDetails_ViewController" id="zpi-pT-hIg" customClass="LeagueDetails_ViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zpi-pT-hIg" customClass="LeagueDetails_ViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7mM-BE-Jo3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,8 +289,9 @@
                         <outlet property="upcomingEvents_collectionView" destination="mxz-G7-1V9" id="j28-5t-Q4Z"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WKA-Qv-pRz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2538" y="-84"/>
+            <point key="canvasLocation" x="2339.130434782609" y="-256.47321428571428"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="K86-ax-F1Z">
@@ -357,7 +515,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x9Y-1a-So4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3632" y="-84"/>
+            <point key="canvasLocation" x="4542.0289855072469" y="-84.375"/>
         </scene>
     </scenes>
     <resources>

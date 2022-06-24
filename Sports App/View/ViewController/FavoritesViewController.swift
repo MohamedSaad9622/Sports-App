@@ -88,7 +88,7 @@ extension FavoritesViewController: UITableViewDataSource{
         }
         
         let storyboard = UIStoryboard(name: Constants.LeagueDetails_storyBoard_name, bundle: nil)
-        let leagueDetails_vc = storyboard.instantiateViewController(withIdentifier: Constants.leagueDetail_ViewController_ID) as! LeagueDetails_ViewController
+        let leagueDetails_vc = storyboard.instantiateViewController(withIdentifier: Constants.leagueDetail_ViewController_ID) as! LeagueDetails_TableViewController
         leagueDetails_vc.league = favoriteLeagues[indexPath.section]
         leagueDetails_vc.previousViewController = Constants.favoritesViewController
         leagueDetails_vc.modalPresentationStyle = .fullScreen

@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UpcomingEvent_CollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak private var eventTime_label: UILabel!
-    @IBOutlet weak private var eventDate_label: UILabel!
-    @IBOutlet weak private var eventName_label: UILabel!
+   
+    @IBOutlet weak var eventTime_label: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var awayTeam_label: UILabel!
+    @IBOutlet weak var homeTeam_lable: UILabel!
+    @IBOutlet weak var event_imageView: UIImageView!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,9 +24,11 @@ class UpcomingEvent_CollectionViewCell: UICollectionViewCell {
     }
 
     func setCell(event: Event) {
-        self.eventName_label.text = event.strEvent
-        self.eventDate_label.text = event.dateEvent
         self.eventTime_label.text = event.strTime
+        self.date.text = event.dateEvent
+        self.awayTeam_label.text = event.strAwayTeam
+        self.homeTeam_lable.text = event.strHomeTeam
+        self.event_imageView.sd_setImage(with: URL(string: event.strThumb), placeholderImage: UIImage(named: "playstore"))
     }
     
 }
