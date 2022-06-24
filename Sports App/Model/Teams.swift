@@ -24,4 +24,7 @@ struct Team: Codable {
     let strFacebook: String
     let strTwitter: String
     let strInstagram: String
+    let strStadiumThumb: String?
+    let strTeamJersey:String?
+
 }

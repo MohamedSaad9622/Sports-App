@@ -10,6 +10,8 @@ import Foundation
 struct Constants {
     
     
+    static let placeHolder_image = "playstore"
+    
 //MARK: - storyboards
     static let second_storyBoard_name           = "Leagues"
     static let LeagueDetails_storyBoard_name     = "LeagueDetails"
@@ -20,9 +22,9 @@ struct Constants {
     static let leagueDetail_ViewController_ID     = "LeagueDetails_ViewController"
     
     static let favoritesViewController           = "FavoritesViewController"
-    static let leaguesViewController              = "LeaguesViewController"
+    static let leaguesViewController             = "LeaguesViewController"
     
-    static let teamDetailsViewController_ID            = "TeamDetailsViewController"
+    static let teamDetailsViewController_ID       = "TeamDetailsViewController"
     
 //MARK: -  collection cells identifier
     

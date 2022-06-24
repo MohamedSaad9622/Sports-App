@@ -29,7 +29,7 @@ class LatestResults_CollectionViewCell: UICollectionViewCell {
         self.secondScore_label.text = event.intAwayScore
         self.date_label.text = event.dateEvent
         self.time_label.text = event.strTime
-        self.event_imageView.sd_setImage(with: URL(string: event.strThumb), placeholderImage: UIImage(named: "playstore"))
+        self.event_imageView.sd_setImage(with: URL(string: event.strThumb), placeholderImage: UIImage(named: Constants.placeHolder_image))
 
     }
    

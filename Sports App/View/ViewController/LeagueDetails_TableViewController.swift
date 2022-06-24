@@ -41,7 +41,12 @@ class LeagueDetails_TableViewController: UITableViewController {
         }
         
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if previousViewController == Constants.favoritesViewController {
+            addToFavorite_button.image = UIImage(systemName: "heart.fill")
+        }
+    }
     
     
 // MARK: -                               BUTTONS ACTION
@@ -182,9 +187,11 @@ extension LeagueDetails_TableViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if let teamDetailsVC = storyboard?.instantiateViewController(withIdentifier: Constants.teamDetailsViewController_ID) as? TeamDetailsViewController{
-            teamDetailsVC.team = teams[indexPath.row]
-            teamDetailsVC.modalPresentationStyle = .fullScreen
-            self.present(teamDetailsVC, animated: true, completion: nil)
+            if indexPath.row < teams.count{
+                teamDetailsVC.team = teams[indexPath.row]
+                teamDetailsVC.modalPresentationStyle = .fullScreen
+                self.present(teamDetailsVC, animated: true, completion: nil)
+            }
         }
     }
     
@@ -199,6 +206,7 @@ extension LeagueDetails_TableViewController:UICollectionViewDelegateFlowLayout{
 
 
 }
+
 
 
 //MARK: -   CoreData Protocols

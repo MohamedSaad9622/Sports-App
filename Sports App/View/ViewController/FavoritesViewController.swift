@@ -32,6 +32,12 @@ class FavoritesViewController: UIViewController {
         favoritesPresenter.fetchFavoritesLeague(appDelegate: appDelegate)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if favoriteLeagues.count == 0 {
+            addAlert(title: "Alert!", message: "There are no favorite leagues", ActionTitle: "Cancle", viewController: self)
+        }
+    }
+    
 
 }
 

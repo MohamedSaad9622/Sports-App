@@ -21,7 +21,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     func setCell(image:String, title:String) {
         sports_cell_title.text = title
-        sports_cell_image.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "playstore"))
+        sports_cell_image.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: Constants.placeHolder_image))
 
     }
 

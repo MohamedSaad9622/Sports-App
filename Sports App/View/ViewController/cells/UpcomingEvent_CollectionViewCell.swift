@@ -28,7 +28,7 @@ class UpcomingEvent_CollectionViewCell: UICollectionViewCell {
         self.date.text = event.dateEvent
         self.awayTeam_label.text = event.strAwayTeam
         self.homeTeam_lable.text = event.strHomeTeam
-        self.event_imageView.sd_setImage(with: URL(string: event.strThumb), placeholderImage: UIImage(named: "playstore"))
+        self.event_imageView.sd_setImage(with: URL(string: event.strThumb), placeholderImage: UIImage(named: Constants.placeHolder_image))
     }
     
 }

@@ -30,11 +30,11 @@ extension LeagueDetails_presenter: ILeagueDetails_presenter_API{
 
     // upcomming Events
     
-    // premier league id = "4328"
+    // premier league id = "4328"    ,     "English%20Premier%20League"
     
     func fetchUpCommingEvents(leagueID: String) {
         self.leagueDetails_model = LeaguesDetails_modelController(leagueDetailsPresenter_Api: self)
-        leagueDetails_model?.fetchEventsFromAPI(leagueID: leagueID, leagueSeason: "\(currentYear - 1)-\(currentYear)")
+        leagueDetails_model?.fetchEventsFromAPI(leagueID: leagueID, leagueSeason: "\(currentYear)-\(currentYear + 1)")
     }
     
     func onSuccess_UpCommingEvents(events: [Event]) {
@@ -48,7 +48,7 @@ extension LeagueDetails_presenter: ILeagueDetails_presenter_API{
     // latest Events
     func fetchLatestResultsEvents(leagueID: String) {
         self.leagueDetails_model = LeaguesDetails_modelController(leagueDetailsPresenter_Api: self)
-        leagueDetails_model?.fetchLatestResultsFromAPI(leagueID: leagueID, leagueSeason: "\(currentYear - 2)-\(currentYear - 1)")
+        leagueDetails_model?.fetchLatestResultsFromAPI(leagueID: leagueID, leagueSeason: "\(currentYear - 1)-\(currentYear)")
     }
     
     func onSuccess_LatestResultsEvents(events: [Event]) {
