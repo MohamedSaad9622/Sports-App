@@ -201,25 +201,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="9dD-UR-tMo">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9dD-UR-tMo">
                                 <rect key="frame" x="0.0" y="790.5" width="414" height="71.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="website-logo" translatesAutoresizingMaskIntoConstraints="NO" id="K1o-O1-za4">
-                                        <rect key="frame" x="0.0" y="0.0" width="78" height="71.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="71.5"/>
                                         <gestureRecognizers/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter-logo" translatesAutoresizingMaskIntoConstraints="NO" id="0Nw-zd-pJ2">
-                                        <rect key="frame" x="78" y="0.0" width="77.5" height="71.5"/>
+                                        <rect key="frame" x="83" y="0.0" width="82.5" height="71.5"/>
                                         <gestureRecognizers/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook-logo" translatesAutoresizingMaskIntoConstraints="NO" id="F0Q-lU-fq1">
-                                        <rect key="frame" x="155.5" y="0.0" width="78" height="71.5"/>
+                                        <rect key="frame" x="165.5" y="0.0" width="83" height="71.5"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youtube" translatesAutoresizingMaskIntoConstraints="NO" id="EkW-R3-48u">
-                                        <rect key="frame" x="233.5" y="0.0" width="102.5" height="71.5"/>
+                                        <rect key="frame" x="248.5" y="0.0" width="82.5" height="71.5"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instagram-log" translatesAutoresizingMaskIntoConstraints="NO" id="qHs-S4-auF">
-                                        <rect key="frame" x="336" y="0.0" width="78" height="71.5"/>
+                                        <rect key="frame" x="331" y="0.0" width="83" height="71.5"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -345,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nih-2J-nik" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="607" y="-481"/>
+            <point key="canvasLocation" x="391" y="-494"/>
         </scene>
     </scenes>
     <resources>
@@ -355,7 +355,7 @@
         <image name="instagram-log" width="170.5" height="170.5"/>
         <image name="twitter-logo" width="170.5" height="170.5"/>
         <image name="website-logo" width="170.5" height="170.5"/>
-        <image name="youtube" width="225" height="225"/>
+        <image name="youtube" width="568" height="426"/>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

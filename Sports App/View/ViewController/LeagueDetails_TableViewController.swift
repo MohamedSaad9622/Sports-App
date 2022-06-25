@@ -187,7 +187,7 @@ extension LeagueDetails_TableViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if let teamDetailsVC = storyboard?.instantiateViewController(withIdentifier: Constants.teamDetailsViewController_ID) as? TeamDetailsViewController{
-            if indexPath.row < teams.count{
+            if collectionView == teams_collectionView {
                 teamDetailsVC.team = teams[indexPath.row]
                 teamDetailsVC.modalPresentationStyle = .fullScreen
                 self.present(teamDetailsVC, animated: true, completion: nil)
