@@ -31,6 +31,8 @@ class TeamDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addTapGestureRecognizer()
+        
         if let team = team {
             self.title = team.strTeam
         }

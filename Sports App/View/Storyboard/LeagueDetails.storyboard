@@ -190,10 +190,10 @@
                                 <rect key="frame" x="0.0" y="89" width="414" height="313.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O0Z-yp-TSR">
-                                <rect key="frame" x="287" y="328" width="127" height="152.5"/>
+                                <rect key="frame" x="290" y="328" width="124" height="152.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EHO-Hi-rhi">
-                                <rect key="frame" x="0.0" y="328" width="116" height="152.5"/>
+                                <rect key="frame" x="0.0" y="328" width="124" height="152.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8wA-BB-Ka2">
                                 <rect key="frame" x="116" y="403" width="171" height="73"/>
@@ -319,12 +319,12 @@
                             <constraint firstItem="WDH-iX-Ldu" firstAttribute="trailing" secondItem="9dD-UR-tMo" secondAttribute="trailing" id="h13-vz-JQa"/>
                             <constraint firstItem="TIB-3j-4II" firstAttribute="leading" secondItem="WDH-iX-Ldu" secondAttribute="leading" id="hzZ-7l-6IS"/>
                             <constraint firstItem="ClI-XR-t27" firstAttribute="top" secondItem="WDH-iX-Ldu" secondAttribute="top" id="iYC-Ga-UH6"/>
-                            <constraint firstItem="EHO-Hi-rhi" firstAttribute="width" secondItem="fLx-yx-ufG" secondAttribute="width" multiplier="0.28" id="nH2-L1-2QH"/>
+                            <constraint firstItem="EHO-Hi-rhi" firstAttribute="width" secondItem="O0Z-yp-TSR" secondAttribute="width" id="nH2-L1-2QH"/>
+                            <constraint firstItem="O0Z-yp-TSR" firstAttribute="width" secondItem="ygB-Tc-CD0" secondAttribute="width" multiplier="0.3" id="qiT-Co-Lds"/>
                             <constraint firstItem="O0Z-yp-TSR" firstAttribute="height" secondItem="EHO-Hi-rhi" secondAttribute="height" id="tU4-mW-idB"/>
                             <constraint firstItem="O0Z-yp-TSR" firstAttribute="leading" secondItem="8wA-BB-Ka2" secondAttribute="trailing" id="vPN-oj-MeJ"/>
                             <constraint firstItem="ygB-Tc-CD0" firstAttribute="height" secondItem="fLx-yx-ufG" secondAttribute="height" multiplier="0.35" id="wLL-Lz-thu"/>
                             <constraint firstItem="EHO-Hi-rhi" firstAttribute="height" secondItem="fLx-yx-ufG" secondAttribute="height" multiplier="0.17" id="xjj-3N-gId"/>
-                            <constraint firstItem="O0Z-yp-TSR" firstAttribute="width" secondItem="EHO-Hi-rhi" secondAttribute="width" multiplier="1.09483" id="zGl-5a-O9g"/>
                         </constraints>
                     </view>
                     <connections>
@@ -355,7 +355,7 @@
         <image name="instagram-log" width="170.5" height="170.5"/>
         <image name="twitter-logo" width="170.5" height="170.5"/>
         <image name="website-logo" width="170.5" height="170.5"/>
-        <image name="youtube" width="568" height="426"/>
+        <image name="youtube" width="300" height="300"/>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

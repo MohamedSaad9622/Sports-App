@@ -16,17 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="drw-p9-iWN">
-                                <rect key="frame" x="87" y="393" width="240" height="110"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="drw-p9-iWN">
+                                <rect key="frame" x="0.0" y="224" width="414" height="448"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="drw-p9-iWN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="349" id="2pP-gv-GM6"/>
                             <constraint firstItem="drw-p9-iWN" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="56Z-x1-pA1"/>
-                            <constraint firstItem="drw-p9-iWN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="EuQ-Af-IRo"/>
+                            <constraint firstItem="drw-p9-iWN" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.5" id="Aig-2k-B7m"/>
                             <constraint firstItem="drw-p9-iWN" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="NxH-3C-HqJ"/>
+                            <constraint firstItem="drw-p9-iWN" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="x0N-Mf-ot6"/>
                         </constraints>
                     </view>
                 </viewController>

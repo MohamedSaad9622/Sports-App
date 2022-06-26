@@ -56,6 +56,7 @@ struct Constants {
     var  sport:String = ""
     var sport_leagues_url : String{
         return "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=\(sport)"
+//    https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?c=England&s=
     }
     
 

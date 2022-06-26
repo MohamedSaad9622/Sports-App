@@ -34,7 +34,7 @@ extension LeagueDetails_presenter: ILeagueDetails_presenter_API{
     
     func fetchUpCommingEvents(leagueID: String) {
         self.leagueDetails_model = LeaguesDetails_modelController(leagueDetailsPresenter_Api: self)
-        leagueDetails_model?.fetchEventsFromAPI(leagueID: leagueID, leagueSeason: "\(currentYear)-\(currentYear + 1)")
+        leagueDetails_model?.fetchEventsFromAPI(leagueID: leagueID, leagueSeason: "\(currentYear - 1)-\(currentYear)")
     }
     
     func onSuccess_UpCommingEvents(events: [Event]) {
